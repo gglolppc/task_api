@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify, g
+from flask import Flask, g
 from flask_app.routes.auth import auth
 from flask_app.routes.tasks import tasks
 from flask_app.errors.handlers import register_error_handlers

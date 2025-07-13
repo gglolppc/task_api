@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify, g
-from sqlalchemy import event
+from flask import Flask, g
 from routes.auth import auth
 from routes.tasks import tasks
 from flasgger import Swagger
