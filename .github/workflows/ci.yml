@@ -25,6 +25,9 @@ jobs:
           pip install "ruff>=0.4.0"
           ruff check .
 
+      - name: 📂 Установка PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+
       - name: ✅ Запускаем тесты
         run: |
           pip install pytest
