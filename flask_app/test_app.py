@@ -1,5 +1,5 @@
 import pytest
-from app import app
+from flask_app.app import app
 from random import randint
 
 @pytest.fixture(scope='module')
