@@ -1,10 +1,10 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, g
-from flask_app.routes.auth import auth
-from flask_app.routes.tasks import tasks
-from flask_app.errors.handlers import register_error_handlers
-from flask_app.db.database import  Session
+from routes.auth import auth
+from routes.tasks import tasks
+from errors.handlers import register_error_handlers
+from db.database import  Session
 import logging
 print("🚀 Running from:", os.path.abspath(__file__))
 logging.basicConfig(
