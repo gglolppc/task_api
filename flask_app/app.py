@@ -1,20 +1,28 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, g
-from routes.auth import auth
-from routes.tasks import tasks
-from flasgger import Swagger
-from errors.handlers import register_error_handlers
-from db.database import  Session
+from flask_app.routes.auth import auth
+from flask_app.routes.tasks import tasks
+from flask_app.errors.handlers import register_error_handlers
+from flask_app.db.database import  Session
+import logging
+print("🚀 Running from:", os.path.abspath(__file__))
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("logs/app.log"),
+        logging.StreamHandler()
+    ]
+)
 
 load_dotenv()
 
 app = Flask(__name__)
-swagger = Swagger(app)
 app.secret_key = os.getenv('SECRET_KEY')
 app.register_blueprint(auth, url_prefix='/', strict_slashes=False)
 app.register_blueprint(tasks, url_prefix='/tasks', strict_slashes=False)
-# Base.metadata.create_all(engine)
+
 
 @app.before_request
 def before_request():

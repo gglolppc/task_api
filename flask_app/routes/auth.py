@@ -6,6 +6,7 @@ from db.models import User
 from utils.data_validation import UserValidator
 from pydantic import ValidationError
 from errors.exceptions import AuthError
+import logging
 
 auth = Blueprint('auth', __name__)
 
@@ -14,11 +15,13 @@ def authorization(f):
     def decorated(*args, **kwargs):
         data = request.get_json(silent=True)
         if not data:
-            return jsonify({'message': 'No input'}), 400
+            logging.warning('No input data received')
+            raise AuthError("No input data received")
         email = data.get('email')
         password = data.get('password')
         if not email or not password:
-            return jsonify({'message': 'email and password are required'}), 400
+            logging.warning('User didnt provide email or password')
+            raise AuthError("Please provide email and password")
         s = g.db
         user = s.query(User).filter_by(email=email).first()
         if user and user.check_password(password):
@@ -32,6 +35,9 @@ def authorization(f):
 @auth.route('/register', methods=['POST'])
 def register():
     data = request.get_json(silent=True)
+    if not data:
+        logging.warning('No data received')
+        raise AuthError("Provide email and password.")
     try:
         user = UserValidator(email=data.get('email'), password=data.get('password'), name=data.get('name'))
         s = g.db
@@ -43,6 +49,7 @@ def register():
         s.add(new_user)
     except ValidationError as e:
         return jsonify({'message': str(e)}), 400
+    logging.info('New user registered')
     return jsonify({'message':f'Success, registered email: {user.email}'}), 201
 
 

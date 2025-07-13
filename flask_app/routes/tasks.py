@@ -5,7 +5,7 @@ from utils.token_check import token_check
 from pydantic import ValidationError
 from datetime import datetime, timezone
 from errors.exceptions import APIError
-
+import logging
 tasks = Blueprint('tasks', __name__)
 
 @tasks.route('/add_task', methods=['POST'])
@@ -31,6 +31,7 @@ def add_task():
                         priority=task.priority or 'low',
                         user_id = g.user_id)
         s.add(new_task)
+        logging.info(f'User {g.user_id} added new task')
     except ValidationError as e:
         return jsonify({'Error': str(e)}), 400
     return jsonify({'message':'Task added'}), 201
