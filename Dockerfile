@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY flask_app/requirements.txt .
+COPY requirements.txt .
 
 COPY dockerized_app/ .
 
