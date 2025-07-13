@@ -23,7 +23,7 @@ jobs:
       - name: 🔍 Линтинг (ruff)
         run: |
           pip install "ruff>=0.4.0"
-          ruff .
+          ruff check .
 
       - name: ✅ Запускаем тесты
         run: |
