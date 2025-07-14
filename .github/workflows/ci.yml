@@ -20,8 +20,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-      env:
-        DATABASE_URL: postgresql://main_db:password123@localhost:5432/db
+    env:
+      DATABASE_URL: postgresql://main_db:password123@localhost:5432/db
 
     steps:
       - name: 🛎️ Клонируем репозиторий
