@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify, g
-from db.models import Task
-from utils.data_validation import TaskValidator, TaskUpdateModel
-from utils.token_check import token_check
+from flask_app.db.models import Task
+from flask_app.utils.data_validation import TaskValidator, TaskUpdateModel
+from flask_app.utils.token_check import token_check
 from pydantic import ValidationError
 from datetime import datetime, timezone
-from errors.exceptions import APIError
+from flask_app.errors.exceptions import APIError
 import logging
 tasks = Blueprint('tasks', __name__)
 

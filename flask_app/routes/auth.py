@@ -2,10 +2,10 @@ import datetime
 import jwt
 from functools import wraps
 from flask import Blueprint, request, jsonify, g, current_app
-from db.models import User
-from utils.data_validation import UserValidator
+from flask_app.db.models import User
+from flask_app.utils.data_validation import UserValidator
 from pydantic import ValidationError
-from errors.exceptions import AuthError
+from flask_app.errors.exceptions import AuthError
 import logging
 
 auth = Blueprint('auth', __name__)

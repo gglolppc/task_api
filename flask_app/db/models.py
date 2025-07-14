@@ -1,4 +1,4 @@
-from db.database import Base
+from flask_app.db.database import Base
 from sqlalchemy import String, Integer, ForeignKey, Column, DateTime
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
