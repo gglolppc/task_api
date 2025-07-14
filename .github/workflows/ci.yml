@@ -22,6 +22,7 @@ jobs:
 
     env:
       DATABASE_URL: postgresql://main_db:password123@localhost:5432/db
+      SECRET_KEY: mysecretkeyforci
 
     steps:
       - name: 🛎️ Клонируем репозиторий
