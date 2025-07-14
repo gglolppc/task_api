@@ -4,9 +4,8 @@ from flask import Flask, g
 from flask_app.routes.auth import auth
 from flask_app.routes.tasks import tasks
 from flask_app.errors.handlers import register_error_handlers
-
 import logging
-from flask_app.db.database import Base, engine
+from flask_app.db.database import Base, engine, Session
 
 LOG_DIR = os.path.join(os.path.dirname(__file__), 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)
