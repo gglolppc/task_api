@@ -11,7 +11,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler("logs/app.log"),
+        logging.FileHandler("flask_app/logs/app.log"),
         logging.StreamHandler()
     ]
 )
