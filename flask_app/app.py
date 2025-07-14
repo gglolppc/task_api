@@ -6,6 +6,10 @@ from flask_app.routes.tasks import tasks
 from flask_app.errors.handlers import register_error_handlers
 from flask_app.db.database import  Session
 import logging
+from flask_app.db.database import Base, engine
+
+
+
 print("🚀 Running from:", os.path.abspath(__file__))
 logging.basicConfig(
     level=logging.INFO,
@@ -38,6 +42,8 @@ def close_session(exception=None):
         db.close()
 register_error_handlers(app)
 
+with engine.begin() as connection:
+    Base.metadata.create_all(bind=connection)
 
 if __name__ == '__main__':
     app.run()
